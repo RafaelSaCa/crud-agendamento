@@ -7,7 +7,7 @@ import { first, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class PacienteService {
-  private readonly apiUrl = "http://localhost:8080/api/pacientes";
+  private readonly apiUrl = "http://localhost:8080/api/paciente";
 
   constructor( private httpClient: HttpClient) { }
 
