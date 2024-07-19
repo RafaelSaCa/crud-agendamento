@@ -1,1 +1,36 @@
-<p>pacientes works!</p>
+<table mat-table [dataSource]="pacientes">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Cód. </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.nome}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sobrenome">
+    <mat-header-cell *matHeaderCellDef> Sobrenome </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.sobrenome}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cpf">
+    <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.cpf}} </mat-cell>
+  </ng-container>
+
+    <ng-container matColumnDef="telefone">
+    <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.telefone}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+    <mat-cell *matCellDef="let paciente"> {{paciente.email}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+
