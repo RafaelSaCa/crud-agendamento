@@ -20,7 +20,7 @@ export class PacienteService {
               );
   }
 
-  save(paciente : Paciente){
+  save(paciente : Partial<Paciente>){
     return this.httpClient.post<Paciente>(this.apiUrl,paciente);
   }
 }

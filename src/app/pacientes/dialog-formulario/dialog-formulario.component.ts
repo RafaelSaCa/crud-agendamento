@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -27,22 +27,22 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './dialog-formulario.component.scss',
 })
 export class DialogFormularioComponent {
-  form: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private service: PacienteService,
-    private snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<DialogFormularioComponent>
-  ) {
-    this.form = this.formBuilder.group({
+  form: FormGroup =this.formBuilder.group({
       nome: [''],
       sobrenome: [''],
       cpf: [''],
       telefone: [''],
       email: [''],
     });
- }
+
+  constructor(
+    private formBuilder: NonNullableFormBuilder,
+    private service: PacienteService,
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DialogFormularioComponent>
+  ) { }
+
+
   onSubmit() {
     this.service.save(this.form.value).subscribe(
       (dados) => this.snackBarSucesso(),
