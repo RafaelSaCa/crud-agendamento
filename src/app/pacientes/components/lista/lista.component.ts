@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { catchError, of } from 'rxjs';
-import { DialogErroComponent } from '../../shared/dialog-erro/dialog-erro.component';
-import { HeaderComponent } from '../../shared/header/header.component';
-import { DialogFormularioComponent } from '../dialog-formulario/dialog-formulario.component';
-import { Paciente } from '../model/paciente';
-import { PacienteService } from '../services/paciente.service';
+import { DialogErroComponent } from '../../../shared/dialog-erro/dialog-erro.component';
+import { HeaderComponent } from '../../../shared/header/header.component';
+import { DialogFormularioComponent } from '../../containers/dialog-formulario/dialog-formulario.component';
+import { Paciente } from '../../model/paciente';
+import { PacienteService } from '../../services/paciente.service';
 
 @Component({
   selector: 'app-lista',
