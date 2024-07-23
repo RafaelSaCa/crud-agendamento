@@ -56,8 +56,8 @@ export class DialogFormularioComponent {
   private snackBarSucesso() {
     this.snackBar.open('Paciente cadastrado com sucesso!', '', {
       duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
+      horizontalPosition:'right',
+      verticalPosition: 'top',
     });
   }
   private snackBarErro() {
