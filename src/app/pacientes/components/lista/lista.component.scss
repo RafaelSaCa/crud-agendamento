@@ -1,3 +1,8 @@
+mat-table{
+  overflow-y: auto;
+  max-height: 720px;
+}
+
 mat-header-cell{
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: 16px;
