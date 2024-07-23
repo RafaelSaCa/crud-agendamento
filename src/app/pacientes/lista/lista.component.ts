@@ -1,47 +1,57 @@
-import { catchError, Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { catchError, of } from 'rxjs';
+import { DialogErroComponent } from '../../shared/dialog-erro/dialog-erro.component';
 import { HeaderComponent } from '../../shared/header/header.component';
-import { ListaComponent } from '../lista/lista.component';
+import { DialogFormularioComponent } from '../dialog-formulario/dialog-formulario.component';
 import { Paciente } from '../model/paciente';
 import { PacienteService } from '../services/paciente.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogErroComponent } from '../../shared/dialog-erro/dialog-erro.component';
-import { MatCard } from '@angular/material/card';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-pacientes',
+  selector: 'app-lista',
   standalone: true,
   imports: [
     MatTableModule,
-    MatCard,
-    MatToolbarModule,
     MatProgressSpinnerModule,
     CommonModule,
     HeaderComponent,
     MatIconModule,
     MatButtonModule,
-    ListaComponent,
   ],
-  templateUrl: './pacientes.component.html',
-  styleUrl: './pacientes.component.scss',
+  templateUrl: './lista.component.html',
+  styleUrl: './lista.component.scss',
 })
-export class PacientesComponent {
+export class ListaComponent {
+  @Input() pacientes: Paciente[] = [];
 
-  pacientes$!: Observable<Paciente[]>;
+  displayedColumns = ['id','nome','sobrenome','cpf','telefone','email','acoes'];
 
-  constructor(private service: PacienteService, public dialog: MatDialog) {
-    this.pacientes$ = this.service.getAll().pipe(
+  constructor(private service: PacienteService, public dialog: MatDialog) {}
+
+  recarregaDadosPagina() {
+    this.service.getAll().pipe(
       catchError((error) => {
         this.openDialogErro('Ocorreu algum erro ao acessar os dados!');
         return of([]);
       })
     );
+    return this.pacientes;
+  }
+
+  openDialogFormulario() {
+      const dialogRef = this.dialog.open(DialogFormularioComponent, {
+      minWidth: '450px',
+      minHeight: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.recarregaDadosPagina();
+    });
   }
 
   openDialogErro(mensagem: string) {

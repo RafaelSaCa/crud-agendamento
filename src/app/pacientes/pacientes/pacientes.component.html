@@ -1,53 +1,14 @@
+<mat-card>
+<mat-toolbar class="mat-elevation-z8"><span>Pacientes Cadastrados</span> </mat-toolbar>
 
-<div *ngIf="pacientes$ | async as pacientes; else spinner">
-  <table mat-table [dataSource]="pacientes">
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Cód. </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.id }} </mat-cell>
-    </ng-container>
+  <app-lista
+    *ngIf="pacientes$ | async as pacientes; else spinner"
+    [pacientes] = "pacientes" />
 
-    <ng-container matColumnDef="nome">
-      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.nome }} </mat-cell>
-    </ng-container>
 
-    <ng-container matColumnDef="sobrenome">
-      <mat-header-cell *matHeaderCellDef> Sobrenome </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.sobrenome }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="cpf">
-      <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.cpf }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="telefone">
-      <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.telefone }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
-      <mat-cell *matCellDef="let paciente"> {{ paciente.email }} </mat-cell>
-    </ng-container>
-
-     <ng-container matColumnDef="acoes">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-raised-button color="light" (click)="openDialogFormulario()"><mat-icon>person_add</mat-icon>Cadastro</button>
-      </mat-header-cell>
-      <mat-cell *matCellDef>
-        <button mat-icon-button color="light"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color="light"><mat-icon>delete</mat-icon></button>
-      </mat-cell>
-
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </table>
-</div>
-<ng-template #spinner>
-  <div class="spinner">
-    <mat-spinner ></mat-spinner>
-  </div>
-</ng-template>
+  <ng-template #spinner>
+    <div class="spinner">
+      <mat-spinner ></mat-spinner>
+    </div>
+  </ng-template>
+  </mat-card>
