@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,8 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { DialogFormularioComponent } from '../../containers/dialog-formulario/dialog-formulario.component';
 import { Paciente } from '../../model/paciente';
 import { PacienteService } from '../../services/paciente.service';
+import { DialogConfirmaExclusaoComponent } from '../../../shared/dialog-confirma-exclusao/dialog-confirma-exclusao.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista',
@@ -28,6 +30,9 @@ import { PacienteService } from '../../services/paciente.service';
 })
 export class ListaComponent {
   @Input() pacientes: Paciente[] = [];
+  @Output() cadastrar = new EventEmitter(false);
+  @Output() edicao= new EventEmitter(false);
+  @Output() remover = new EventEmitter(false);
 
   displayedColumns = [
     'id',
@@ -39,7 +44,13 @@ export class ListaComponent {
     'acoes',
   ];
 
-  constructor(private service: PacienteService, public dialog: MatDialog) {}
+  constructor(
+    private service: PacienteService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
+    this.recarregaDadosPagina();
+  }
 
   recarregaDadosPagina() {
     this.service.getAll().pipe(
@@ -51,26 +62,15 @@ export class ListaComponent {
     return this.pacientes;
   }
 
-  openDialogFormulario() {
-    const dialogRef = this.dialog.open(DialogFormularioComponent, {
-      minWidth: '450px',
-      minHeight: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.recarregaDadosPagina();
-    });
+  adicionar(){
+    this.cadastrar.emit();
   }
 
-  openModalEditar(paciente: Paciente) {
-       const dialogRef = this.dialog.open(DialogFormularioComponent, {
-         minWidth: '450px',
-         minHeight: '250px',
-         data: paciente,
-       });
-       dialogRef.afterClosed().subscribe(() => {
-         this.recarregaDadosPagina();
-       });
+  editar(paciente: Paciente){
+    this.edicao.emit(paciente);
+  }
+  deletar(paciente: Paciente){
+    this.remover.emit(paciente);
   }
 
   openDialogErro(mensagem: string) {
@@ -78,4 +78,5 @@ export class ListaComponent {
       data: mensagem,
     });
   }
+
 }

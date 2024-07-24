@@ -93,6 +93,7 @@ export class DialogFormularioComponent implements OnInit{
       verticalPosition: 'top',
     });
   }
+
   private snackBarErro() {
     this.snackBar.open('Ocorreu um erro ao cadastrar o paciente!', '', {
       duration: 3000,

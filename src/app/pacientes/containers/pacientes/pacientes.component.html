@@ -3,7 +3,11 @@
 
   <app-lista
     *ngIf="pacientes$ | async as pacientes; else spinner"
-    [pacientes] = "pacientes" />
+    [pacientes] = "pacientes"
+    (cadastrar)="adicionar()"
+    (edicao)="editar($event)"
+    (remover)="deletar($event)"
+  />
 
 
   <ng-template #spinner>

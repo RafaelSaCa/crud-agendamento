@@ -14,7 +14,7 @@ export class PacienteService {
   getAll() {
     return this.httpClient.get<Paciente[]>(this.apiUrl).pipe(
       first(),
-      delay(500),
+      delay(10),
       tap((pacientes) => console.log(pacientes))
     );
   }
@@ -27,4 +27,7 @@ export class PacienteService {
     return this.httpClient.put<Paciente>(` ${this.apiUrl}/${id}` ,paciente);
   }
 
+  delete(id: string){
+    return this.httpClient.delete( ` ${this.apiUrl}/${id}` );
+  }
 }

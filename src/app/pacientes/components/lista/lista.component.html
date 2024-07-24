@@ -31,11 +31,11 @@
 
      <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-raised-button color="light" (click)="openDialogFormulario()"><mat-icon>person_add</mat-icon>Cadastro</button>
+        <button mat-raised-button color="light" (click)="adicionar()"><mat-icon>person_add</mat-icon>Cadastro</button>
       </mat-header-cell>
       <mat-cell *matCellDef="let paciente"    class="coluna-acoes" >
-        <button mat-icon-button color="light" (click)="openModalEditar(paciente)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color="light"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="light" (click)="editar(paciente)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="light" (click)="deletar(paciente)"><mat-icon>delete</mat-icon></button>
       </mat-cell>
 
     </ng-container>
