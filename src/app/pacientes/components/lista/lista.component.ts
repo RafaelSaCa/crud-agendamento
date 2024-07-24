@@ -29,7 +29,15 @@ import { PacienteService } from '../../services/paciente.service';
 export class ListaComponent {
   @Input() pacientes: Paciente[] = [];
 
-  displayedColumns = ['id','nome','sobrenome','cpf','telefone','email','acoes'];
+  displayedColumns = [
+    'id',
+    'nome',
+    'sobrenome',
+    'cpf',
+    'telefone',
+    'email',
+    'acoes',
+  ];
 
   constructor(private service: PacienteService, public dialog: MatDialog) {}
 
@@ -44,7 +52,7 @@ export class ListaComponent {
   }
 
   openDialogFormulario() {
-      const dialogRef = this.dialog.open(DialogFormularioComponent, {
+    const dialogRef = this.dialog.open(DialogFormularioComponent, {
       minWidth: '450px',
       minHeight: '250px',
     });
@@ -52,6 +60,17 @@ export class ListaComponent {
     dialogRef.afterClosed().subscribe(() => {
       this.recarregaDadosPagina();
     });
+  }
+
+  openModalEditar(paciente: Paciente) {
+       const dialogRef = this.dialog.open(DialogFormularioComponent, {
+         minWidth: '450px',
+         minHeight: '250px',
+         data: paciente,
+       });
+       dialogRef.afterClosed().subscribe(() => {
+         this.recarregaDadosPagina();
+       });
   }
 
   openDialogErro(mensagem: string) {

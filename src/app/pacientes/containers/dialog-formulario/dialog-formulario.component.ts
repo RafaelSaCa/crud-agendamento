@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { PacienteService } from '../../services/paciente.service';
+import { Paciente } from '../../model/paciente';
 
 
 
@@ -28,33 +29,65 @@ import { PacienteService } from '../../services/paciente.service';
   templateUrl: './dialog-formulario.component.html',
   styleUrl: './dialog-formulario.component.scss',
 })
-export class DialogFormularioComponent {
-  form: FormGroup =this.formBuilder.group({
-      nome: [''],
-      sobrenome: [''],
-      cpf: [''],
-      telefone: [''],
-      email: [''],
-    });
+export class DialogFormularioComponent implements OnInit{
 
-  constructor(
-    private formBuilder: NonNullableFormBuilder,
-    private service: PacienteService,
-    private snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<DialogFormularioComponent>
-  ) { }
+  form!: FormGroup;
+  constructor(  private formBuilder: NonNullableFormBuilder, private service: PacienteService,
+                       private snackBar: MatSnackBar,public dialogRef: MatDialogRef<DialogFormularioComponent>,
+                      @Inject(MAT_DIALOG_DATA) public data: Paciente) { }
 
+  ngOnInit(): void {
+      this.buildForm();
+    }
 
-  onSubmit() {
-    this.service.save(this.form.value).subscribe(
-      (dados) => this.snackBarSucesso(),
-      (error) => this.snackBarErro()
-    );
-    this.dialogRef.close();
+  buildForm(){
+      this.form = this.formBuilder.group({
+        nome: [''],
+        sobrenome: [''],
+        cpf: [''],
+        telefone: [''],
+        email: [''],
+      });
+
+      if ( this.data && this.data.nome){
+        this.carregaDadosForm();
+      }
   }
 
+  carregaDadosForm() {
+      this.form.patchValue({
+        nome: this.data.nome,
+        sobrenome: this.data.sobrenome,
+        cpf: this.data.cpf,
+        telefone: this.data.telefone,
+        email: this.data.email,
+      });
+  }
+
+  onSubmit() {
+    const paciente : Paciente = this.form.getRawValue();
+
+
+    if ( this.data && this.data.nome){
+
+      this.service.update(this.data.id, paciente ).subscribe(
+        (dados) => this.snackBarSucesso(),
+        (error) => this.snackBarErro()
+      );
+      this.dialogRef.close();
+
+    } else{
+
+    this.service.save(this.form.value).subscribe(
+        (dados) => this.snackBarSucesso(),
+        (error) => this.snackBarErro()
+      );
+      this.dialogRef.close();
+    }
+ }
+
   private snackBarSucesso() {
-    this.snackBar.open('Paciente cadastrado com sucesso!', '', {
+    this.snackBar.open('Dados salvos com sucesso!', '', {
       duration: 3000,
       horizontalPosition:'right',
       verticalPosition: 'top',
