@@ -4,15 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { catchError, of } from 'rxjs';
 import { DialogErroComponent } from '../../../shared/dialog-erro/dialog-erro.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
-import { DialogFormularioComponent } from '../../containers/dialog-formulario/dialog-formulario.component';
 import { Paciente } from '../../model/paciente';
 import { PacienteService } from '../../services/paciente.service';
-import { DialogConfirmaExclusaoComponent } from '../../../shared/dialog-confirma-exclusao/dialog-confirma-exclusao.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista',
@@ -31,7 +29,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ListaComponent {
   @Input() pacientes: Paciente[] = [];
   @Output() cadastrar = new EventEmitter(false);
-  @Output() edicao= new EventEmitter(false);
+  @Output() edicao = new EventEmitter(false);
   @Output() remover = new EventEmitter(false);
 
   displayedColumns = [
@@ -62,14 +60,14 @@ export class ListaComponent {
     return this.pacientes;
   }
 
-  adicionar(){
+  adicionar() {
     this.cadastrar.emit();
   }
 
-  editar(paciente: Paciente){
+  editar(paciente: Paciente) {
     this.edicao.emit(paciente);
   }
-  deletar(paciente: Paciente){
+  deletar(paciente: Paciente) {
     this.remover.emit(paciente);
   }
 
@@ -78,5 +76,4 @@ export class ListaComponent {
       data: mensagem,
     });
   }
-
 }

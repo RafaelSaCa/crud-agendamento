@@ -33,8 +33,8 @@ export class DialogFormularioComponent implements OnInit{
 
   form!: FormGroup;
   constructor(  private formBuilder: NonNullableFormBuilder, private service: PacienteService,
-                       private snackBar: MatSnackBar,public dialogRef: MatDialogRef<DialogFormularioComponent>,
-                      @Inject(MAT_DIALOG_DATA) public data: Paciente) { }
+                private snackBar: MatSnackBar,public dialogRef: MatDialogRef<DialogFormularioComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: Paciente) { }
 
   ngOnInit(): void {
       this.buildForm();
@@ -66,7 +66,6 @@ export class DialogFormularioComponent implements OnInit{
 
   onSubmit() {
     const paciente : Paciente = this.form.getRawValue();
-
 
     if ( this.data && this.data.nome){
 
