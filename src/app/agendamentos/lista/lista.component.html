@@ -1,0 +1,24 @@
+<mat-tab-group>
+  <mat-tab label="HOJE">
+    <div class="card-content">
+    @for (agendamento of agendamentos; track agendamento) {
+    <mat-card appearance="raised">
+      <mat-card-header>
+        <mat-card-title>{{ agendamento.paciente.nome }} {{agendamento.paciente.sobrenome}}</mat-card-title>
+        <mat-card-subtitle>{{ agendamento.horario }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ agendamento.descricao }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-stroked-button>Confirmar</button>
+        <button mat-stroked-button>Alterar</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+    </div>
+  </mat-tab>
+  <mat-tab label="AMANHÃ">
+    <mat-card appearance="outlined">
+      <mat-card-content>Simple card</mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
