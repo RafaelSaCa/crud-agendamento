@@ -1,0 +1,11 @@
+<mat-toolbar class="mat-elevation-z8"><span>Agendamentos do dia</span></mat-toolbar>
+
+<app-lista
+  *ngIf="agendamentos$ | async as agendamentos; else spinner"
+  [agendamentos]="agendamentos"
+ />
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
