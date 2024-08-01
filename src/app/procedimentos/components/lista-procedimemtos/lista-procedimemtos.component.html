@@ -1,0 +1,28 @@
+<mat-card>
+<mat-table [dataSource]="procedimentos">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef > Cód. </mat-header-cell>
+      <mat-cell *matCellDef="let procedimento"> {{procedimento.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descricao </mat-header-cell>
+      <mat-cell *matCellDef="let procedimento"> {{procedimento.descricao}} </mat-cell>
+    </ng-container>
+
+
+     <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef class="coluna-acoes">
+        <button mat-raised-button color="light" (click)="salvar()"><mat-icon>person_add</mat-icon>Cadastro</button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let procedimento"    class="coluna-acoes" >
+        <button mat-icon-button color="light" (click)="edicao(procedimento)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="light" (click)="remocao(procedimento)"><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>
