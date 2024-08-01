@@ -1,4 +1,5 @@
- <mat-table [dataSource]="pacientes">
+<mat-card>
+<mat-table [dataSource]="pacientes">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef > Cód. </mat-header-cell>
       <mat-cell *matCellDef="let paciente"> {{ paciente.id }} </mat-cell>
@@ -43,3 +44,4 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+</mat-card>

@@ -11,6 +11,7 @@ import { DialogErroComponent } from '../../../shared/dialog-erro/dialog-erro.com
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { Paciente } from '../../model/paciente';
 import { PacienteService } from '../../services/paciente.service';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-lista',
@@ -22,6 +23,7 @@ import { PacienteService } from '../../services/paciente.service';
     HeaderComponent,
     MatIconModule,
     MatButtonModule,
+    MatCardModule
   ],
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.scss',
