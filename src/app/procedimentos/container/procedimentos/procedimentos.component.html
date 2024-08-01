@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-toolbar class="mat-elevation-z8"><span>Procedimentos Disponíveis</span> </mat-toolbar>
+
+  <app-lista-procedimemtos
+    *ngIf="procedimentos$ | async as procedimentos; else spinner"
+    [procedimentos]="procedimentos"
+  />
+
+
+  <ng-template #spinner>
+    <div class="spinner">
+      <mat-spinner ></mat-spinner>
+    </div>
+  </ng-template>
+</mat-card>
