@@ -1,0 +1,33 @@
+mat-form-field{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+  margin-top: 15px;
+}
+
+mat-card-title{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+
+}
+
+mat-divider{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+button{
+  width: 88%;
+  margin: auto;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #023047;
+}
+
+.mat-mdc-raised-button .mat-mdc-button-touch-target{
+    color: #023047;
+}
