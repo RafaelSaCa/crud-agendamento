@@ -13,4 +13,16 @@ export class ProcedimentoService {
   listar(){
    return this.httpClient.get<Procedimento[]>(this.apiUrl);
   }
+
+  cadastrar(procedimento: Procedimento){
+    return this.httpClient.post<Procedimento>(this.apiUrl,procedimento);
+  }
+
+  atualizar(id: string,procedimento: Procedimento){
+    return this.httpClient.put<Procedimento>(`${this.apiUrl}/${id}`, procedimento);
+  }
+
+  deletar(id:string){
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
+  }
 }
