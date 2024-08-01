@@ -4,6 +4,9 @@
   <app-lista-procedimemtos
     *ngIf="procedimentos$ | async as procedimentos; else spinner"
     [procedimentos]="procedimentos"
+    (cadastrar)="adicionar()"
+    (editar)="editar($event)"
+    (deletar)="deletar($event)"
   />
 
 
