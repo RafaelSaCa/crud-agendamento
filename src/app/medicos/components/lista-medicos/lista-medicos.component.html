@@ -1,0 +1,42 @@
+<mat-card>
+<mat-table [dataSource]="medicos">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef > Cód. </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{ medico.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{ medico.nome }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sobrenome">
+      <mat-header-cell *matHeaderCellDef> Sobrenome </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{ medico.sobrenome }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="crm">
+      <mat-header-cell *matHeaderCellDef> CRM </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{ medico.crm}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefone">
+      <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+      <mat-cell *matCellDef="let medico"> {{ medico.telefone }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-raised-button color="light" (click)="salvar()"><mat-icon>person_add</mat-icon>Cadastrar</button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let medico"    class="coluna-acoes" >
+        <button mat-icon-button color="light" (click)="edicao(medico)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="light" (click)="remocao(medico)"><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>
