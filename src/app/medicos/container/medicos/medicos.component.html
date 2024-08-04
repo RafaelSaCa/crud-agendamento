@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-toolbar class="mat-elevation-z8"><span>Médicos Cadastrados</span> </mat-toolbar>
+  @if (medicos$ | async; as medicos){
+  <app-lista-medicos
+  [medicos]="medicos"
+  (cadastrar)="adicionar()"
+  (editar)="editar($event)"
+  (deletar)="deletar($event)"
+  />
+  }
+
+  <ng-template #spinner>
+    <div class="spinner">
+      <mat-spinner ></mat-spinner>
+    </div>
+  </ng-template>
+</mat-card>
