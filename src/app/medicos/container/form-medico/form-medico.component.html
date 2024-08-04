@@ -1,0 +1,30 @@
+<mat-card>
+   <mat-card-header>
+    <mat-card-title>Cadastro de Médicos</mat-card-title>
+  </mat-card-header>
+<mat-divider></mat-divider>
+ <mat-card-content>
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome"  formControlName="nome"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sobrenome</mat-label>
+    <input matInput placeholder="Sobrenome"  formControlName="sobrenome"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>CRM</mat-label>
+    <input matInput placeholder="Ex. 123456CRM/SP"  formControlName="crm"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Telefone</mat-label>
+    <input matInput placeholder="Ex. 18 99965-9630"  formControlName="telefone" />
+  </mat-form-field>
+  </form>
+</mat-card-content>
+<mat-divider></mat-divider>
+ <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+  </mat-card-actions>
+</mat-card>
