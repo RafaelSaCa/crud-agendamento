@@ -21,4 +21,11 @@ export const routes: Routes = [
         (m) => m.ProcedimentosModule
       ),
   },
+  {
+    path: 'medicos',
+    loadChildren: () =>
+      import('./medicos/medicos.module').then(
+        (m) => m.MedicosModule
+      ),
+  },
 ];
